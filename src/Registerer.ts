@@ -1,12 +1,22 @@
-import { ApplicationCommand, ApplicationCommandData, Client, Collection, Guild, GuildResolvable, Snowflake } from "discord.js";
-
+import {
+  ApplicationCommand,
+  ApplicationCommandData,
+  Client,
+  Collection,
+  Guild,
+  GuildResolvable,
+  Snowflake,
+} from 'discord.js';
 
 export abstract class CommandRegisterer {
-  constructor(readonly client: Client, readonly commands: ApplicationCommandData[]) { }
+  constructor(
+    readonly client: Client,
+    readonly commands: ApplicationCommandData[]
+  ) {}
   abstract register(): Promise<void>;
   public guildCreateHandler(guild: Guild): void | Promise<void>;
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  public guildCreateHandler() { };
+  public guildCreateHandler() {}
   abstract getCommand(
     commandName: string,
     guildId?: Snowflake
