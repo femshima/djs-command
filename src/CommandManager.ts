@@ -97,6 +97,6 @@ export default class CommandManager {
     if (!command) return;
     const handler = this.commandCollection.get(command.name)?.handler;
     if (!handler) return;
-    await handler(interaction);
+    await handler(interaction, this);
   }
 }

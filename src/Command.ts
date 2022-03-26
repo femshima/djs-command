@@ -4,6 +4,7 @@ import {
   CommandInteraction,
   Guild,
 } from 'discord.js';
+import CommandManager from './CommandManager';
 
 export default interface Command {
   definition: ApplicationCommandData;
@@ -12,5 +13,8 @@ export default interface Command {
   ) =>
     | ApplicationCommandPermissionData[]
     | Promise<ApplicationCommandPermissionData[]>;
-  handler: (interaction: CommandInteraction<'cached'>) => void | Promise<void>;
+  handler: (
+    interaction: CommandInteraction<'cached'>,
+    commandManager: CommandManager
+  ) => void | Promise<void>;
 }
