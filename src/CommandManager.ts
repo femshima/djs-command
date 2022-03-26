@@ -49,7 +49,7 @@ export default class CommandManager {
       commands.map((command) => [command.definition.name, command])
     );
     if (coll.size !== commands.length) {
-      throw new Error('Duplicate command is not allowed!');
+      throw new Error('Duplicated command name is not allowed!');
     }
     this.commandCollection = coll;
   }
