@@ -65,11 +65,10 @@ export default class CommandManager {
   }
   public async register() {
     await this.registerer.register();
-    for (const commandName in this.commandCollection.keys()) {
+    for (const [commandName, command] of this.commandCollection.entries()) {
       await Promise.all(
         this.client.guilds.cache.map(async (guild) => {
-          const permission =
-            this.commandCollection.get(commandName)?.permission;
+          const permission = command.permission;
           if (!permission) return;
           const perms = await permission(guild);
           await this.setPermission(guild.id, commandName, perms);
