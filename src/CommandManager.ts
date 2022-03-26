@@ -45,9 +45,13 @@ export default class CommandManager {
     });
   }
   private set commands(commands: Command[]) {
-    this.commandCollection = new Collection(
+    const coll = new Collection(
       commands.map((command) => [command.definition.name, command])
     );
+    if (coll.size !== commands.length) {
+      throw new Error('Duplicate command is not allowed!');
+    }
+    this.commandCollection = coll;
   }
   public get commands() {
     return Array.from(this.commandCollection.values());
