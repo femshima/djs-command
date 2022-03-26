@@ -5,7 +5,7 @@ import {
   Guild,
 } from 'discord.js';
 
-export interface Command {
+export default interface Command {
   definition: ApplicationCommandData;
   permission?: (
     guild: Guild
